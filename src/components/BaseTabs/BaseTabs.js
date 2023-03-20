@@ -8,7 +8,7 @@ import BaseSearchPage from '../BaseSearchPage/BaseSearchPage';
 import { getUsers, getLength } from '../../data/users'
 import './BaseTabs.css'
 
-function BaseTabs() {
+function BaseTabs({ darkMode }) {
     const [key, setKey] = useState('neu');
 
     const [page, setPage] = useState(1)
@@ -32,27 +32,27 @@ function BaseTabs() {
 
     return (
 
-        <div className='position-relative pe-3' >
+        <div className='w-100 position-relative' >
             <Tabs
                 id="controlled-tab-example"
                 activeKey={key}
                 onSelect={(k) => setKey(k)}
-                className="bg_tab_header"
+                className={`bg_tab_header ${darkMode ? 'bg-dark border border-white' : ''}`}
             >
-                <Tab tabClassName='text-dark border-0 rounded-0' eventKey="neu" title="+ NEU">
-                    <BaseFormCreate />
+                <Tab tabClassName={`border-0 rounded-0 text-${key === 'neu' ? 'dark' : darkMode ? 'white' : 'dark'}`} eventKey="neu" title="+ NEU">
+                    <BaseFormCreate darkMode={darkMode} />
                 </Tab>
-                <Tab tabClassName='text-dark border-0 rounded-0' eventKey="ubersicht" title="Übersicht">
+                <Tab tabClassName={`border-0 rounded-0 text-${key === 'ubersicht' ? 'dark' : darkMode ? 'white' : 'dark'}`} eventKey="ubersicht" title="Übersicht">
                     <BaseTable data={getUsers(page, limit)} />
                     <div className='d-flex justify-content-center paginationTable'>
-                        <BasePagination totalPage={totalPage} page={page} limit={limit} siblings={1} onPageChange={handlePageChange} />
+                        <BasePagination darkMode={darkMode} totalPage={totalPage} page={page} limit={limit} siblings={1} onPageChange={handlePageChange} />
                     </div>
                 </Tab>
-                <Tab tabClassName='text-dark border-0 rounded-0' eventKey="suche" title="Suche">
+                <Tab tabClassName={`border-0 rounded-0 text-${key === 'suche' ? 'dark' : darkMode ? 'white' : 'dark'}`} eventKey="suche" title="Suche">
                     <BaseSearchPage />
                 </Tab>
             </Tabs>
-            <span className='position-absolute top-0 end-0 translate-middle-x d-flex align-items-center mt-2' >Date // Time</span>
+            <span className={`position-absolute top-0 end-0 translate-middle-x d-flex align-items-center mt-2 text-${darkMode ? 'white' : 'dark'}`} >Date // Time</span>
         </div>
     );
 }

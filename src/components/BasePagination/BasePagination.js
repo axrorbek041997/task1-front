@@ -18,13 +18,6 @@ function BasePagination(props) {
                     :
                     <Pagination.Item onClick={() => props.onPageChange(value)} key={value + i} >{value}</Pagination.Item>
             })}
-            {/* <Pagination.Item active>{2}</Pagination.Item>
-            <Pagination.Item>{3}</Pagination.Item>
-            <Pagination.Item >{4}</Pagination.Item>
-            <Pagination.Item>{5}</Pagination.Item>
-
-            <Pagination.Ellipsis />
-            <Pagination.Item >{20}</Pagination.Item> */}
             <Pagination.Next onClick={() => props.onPageChange('next')} >Next</Pagination.Next>
         </Pagination>
     );

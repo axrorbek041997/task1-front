@@ -18,7 +18,7 @@ const BaseTable = (props) => {
         } else if (status === 'Anweisung') {
             return 'warning'
         } else {
-            return 'transparent'
+            return ''
         }
 
     }
@@ -36,7 +36,7 @@ const BaseTable = (props) => {
     }
     return (
         <>
-            <Table className='my-3 border border-white' responsive="sm" striped bordered hover>
+            <Table variant="dark" className='my-3 border border-white' responsive="sm" striped bordered hover>
                 <thead className='bg_table_header text-white' >
                     <tr>
                         <th>
