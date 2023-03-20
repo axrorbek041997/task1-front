@@ -4,7 +4,7 @@ import './BaseTable.css'
 import { useState } from 'react';
 
 
-const BaseTable = (props) => {
+const BaseTable = ({ data, darkMode }) => {
     const [iconPosDatum, setIconPosDatum] = useState(true)
     const [iconPosUhrzeit, setIconPosUhrzeit] = useState(true)
     const [iconPosSchicht, setIconPosSchicht] = useState(true)
@@ -36,7 +36,7 @@ const BaseTable = (props) => {
     }
     return (
         <>
-            <Table variant="dark" className='my-3 border border-white' responsive="sm" striped bordered hover>
+            <Table variant={`${darkMode ? 'dark' : 'with'}`} className='my-3 border border-white' responsive="sm" striped bordered hover>
                 <thead className='bg_table_header text-white' >
                     <tr>
                         <th>
@@ -105,7 +105,7 @@ const BaseTable = (props) => {
                 </thead>
                 <tbody>
                     {
-                        props.data.map((item, i) => {
+                        data.map((item, i) => {
                             return item !== undefined ? (
                                 <Fragment key={item?.id + i}>
                                     <tr>

@@ -3,11 +3,11 @@ import Form from 'react-bootstrap/Form';
 import './BaseSearchPage.css'
 import BaseSelect from '../BaseSelect/BaseSelect';
 
-function BaseSearchPage() {
+function BaseSearchPage({ darkMode }) {
     return (
         <div>
             <Table className='my-4' striped bordered>
-                <tbody className='search_page' >
+                <tbody className={`${darkMode ? 'search_page-dark' : 'search_page'}`} >
                     <tr>
                         <td>
                             <div className='d-flex align-items-center' >
@@ -51,7 +51,7 @@ function BaseSearchPage() {
                 </tbody>
             </Table>
             <div className='d-flex justify-content-end' >
-                <button className='search_btn' >Suchen..</button>
+                <button className={darkMode ? 'search_btn-dark' : 'search_btn'} >Suchen..</button>
             </div>
         </div>
     );
