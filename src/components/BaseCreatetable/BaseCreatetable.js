@@ -1,13 +1,12 @@
-import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
-import Modal from 'react-bootstrap/Modal';
-import BaseFileUpload from '../BaseFileUpload/BaseFileUpload';
-import './BaseCreateTable.css'
-import BaseMultiSelect from '../BaseMultiSelect/BaseMultiSelect';
 import { useState } from 'react';
 import moment from 'moment';
+import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
+import BaseFileUpload from '../BaseFileUpload/BaseFileUpload';
+import BaseMultiSelect from '../BaseMultiSelect/BaseMultiSelect';
 import { machine, statusData } from '../../data/users';
-import { Button } from 'react-bootstrap';
+
+import './BaseCreateTable.css'
 
 
 function BaseFormCreate({ darkMode }) {
@@ -15,7 +14,6 @@ function BaseFormCreate({ darkMode }) {
     const [currentDate, setCurrentDate] = useState(moment().format('DD.MM.YYYY, HH:mm:ss'))
     const time = moment().format('HH:mm:ss')
 
-    // const [dateAuto, setdateAuto] = useState(date)
     const [employeeShortcut, setEmployeeShortcut] = useState('')
     const [maschine, setMaschine] = useState([])
     const [status, setStatus] = useState('')
@@ -26,11 +24,6 @@ function BaseFormCreate({ darkMode }) {
     let FormData = require("form-data");
     const formData = new FormData()
     formData.append('file', files[0])
-    // useEffect(() => {
-    //     formData.append('file', files[0])
-    // }, [files])
-
-
 
 
     const handelEmployee = (e) => {
@@ -69,8 +62,6 @@ function BaseFormCreate({ darkMode }) {
         setStatus('')
         setNote('')
         setFiles([])
-        // console.log({ dateAuto, employeeShortcut, maschine, status, note, files, formData })
-
     }
 
     return (
@@ -111,7 +102,6 @@ function BaseFormCreate({ darkMode }) {
                         <td>
                             <div className='my-2' >
                                 <Form.Label className={`fs-5 fw-bold ps-1 text-${darkMode ? 'white' : ''}`} >Status</Form.Label>
-                                {/* <BaseMultiSelect options={statusData} single value={status} placeholder='Status:' select={(e) => setStatus(e)} /> */}
                                 <Form className='ps-3 d-flex'>
                                     {
                                         statusData.map(item => {

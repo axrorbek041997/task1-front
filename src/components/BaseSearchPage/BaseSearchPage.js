@@ -1,9 +1,14 @@
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
-import './BaseSearchPage.css'
+import { Table, Form } from 'react-bootstrap';
 import BaseSelect from '../BaseSelect/BaseSelect';
 
+import './BaseSearchPage.css'
+
 function BaseSearchPage({ darkMode }) {
+
+    const handleSelect = (e) => {
+        console.log(e)
+    }
+
     return (
         <div>
             <Table className='my-4' striped bordered>
@@ -26,25 +31,25 @@ function BaseSearchPage({ darkMode }) {
                         <td className='search_page-text' >
                             <div className='d-flex align-items-center' >
                                 <p className={`my-0 me-2 px-2 py-1 fw-bold text-${darkMode ? 'white' : ''}`} >Schicht:</p>
-                                <BaseSelect size='sm' />
+                                <BaseSelect select={(e) => handleSelect(e)} size='sm' />
                             </div>
                         </td>
                         <td className='search_page-text' >
                             <div className='d-flex align-items-center' >
                                 <p className={`my-0 me-2 px-2 py-1 fw-bold text-${darkMode ? 'white' : ''}`} >Status:</p>
-                                <BaseSelect size='sm' />
+                                <BaseSelect select={(e) => handleSelect(e)} size='sm' />
                             </div>
                         </td>
                         <td className='search_page-text'>
                             <div className='d-flex align-items-center' >
                                 <p className={`my-0 me-2 px-2 py-1 fw-bold text-${darkMode ? 'white' : ''}`} >MA:</p>
-                                <BaseSelect size='sm' />
+                                <BaseSelect select={(e) => handleSelect(e)} size='sm' />
                             </div>
                         </td>
                         <td className='search_page-text'>
                             <div className='d-flex align-items-center' >
                                 <p className={`my-0 me-2 px-2 py-1 fw-bold text-${darkMode ? 'white' : ''}`} >Maschine:</p>
-                                <BaseSelect size='sm' />
+                                <BaseSelect select={(e) => handleSelect(e)} size='sm' />
                             </div>
                         </td>
                     </tr>

@@ -1,8 +1,8 @@
-import { Modal, Button, Form } from 'react-bootstrap';
-import { Fragment } from 'react';
-import Table from 'react-bootstrap/Table';
-import './BaseTable.css'
 import { useState } from 'react';
+import { Modal, Button, Form, Table } from 'react-bootstrap';
+import { Fragment } from 'react';
+
+import './BaseTable.css'
 
 
 const BaseTable = ({ data, darkMode }) => {
@@ -34,9 +34,6 @@ const BaseTable = ({ data, darkMode }) => {
         if (str === 'status') setIconPosStatus(!iconPosStatus)
         if (str === 'ma') setIconPosMa(!iconPosMa)
         if (str === 'mashine') setIconPosMashine(!iconPosMashine)
-
-
-        // console.log(str)
     }
 
     const handleClose = (str) => {
@@ -47,7 +44,9 @@ const BaseTable = ({ data, darkMode }) => {
             setNoteCommentSave(noteComment)
         }
     };
+
     const handleShow = () => setShow(true);
+
     return (
         <>
             <Table variant={`${darkMode ? 'dark' : 'with'}`} className='my-3 border border-white' responsive="sm" striped bordered hover>

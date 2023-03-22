@@ -101,8 +101,3 @@ export const statusData = [
     { name: 'Störung mit Ausfall', id: 4 },
     { name: 'Qualitätsabweichung', id: 5 }
 ]
-
-export const notData = [
-    { name: 'Halbe Teile', id: 1 },
-    { name: 'Auswerfer abgebrochen', id: 2 },
-]
