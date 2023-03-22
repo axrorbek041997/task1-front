@@ -13,3 +13,14 @@
 .icon_position {
   transform: rotate(180deg);
 }
+.bg_space {
+  background-color: #fdfdfd !important;
+}
+.bg_tbody {
+  background-color: rgb(171, 198, 235) !important;
+}
+.cursor_pointer {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
