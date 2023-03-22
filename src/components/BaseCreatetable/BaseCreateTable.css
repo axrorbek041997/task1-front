@@ -1,11 +1,13 @@
 .btn_b {
   border: 1px solid #0578be;
   min-width: 100px;
+  background-color: #2e86de;
 }
 .btn_b-dark {
   border: 1px solid white;
   min-width: 100px;
   color: white;
+  background-color: transparent;
 }
 .table_form {
   border: 1px solid #0578be;
@@ -22,4 +24,20 @@
   /* border-color: white !important; */
   /* outline: 0 !important; */
   box-shadow: none !important;
+}
+
+.btn_note {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  text-align: start;
+  padding: 0 2px;
+  font-size: 20px;
+  color: #727171;
+}
+.form-control:disabled {
+  background-color: white !important;
+}
+.form-control {
+  font-size: 20px !important;
 }
