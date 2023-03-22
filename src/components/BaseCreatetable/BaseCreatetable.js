@@ -20,19 +20,8 @@ function BaseFormCreate({ darkMode }) {
     const [maschine, setMaschine] = useState([])
     const [status, setStatus] = useState('')
     const [note, setNote] = useState('')
-    const [noteSave, setNoteSave] = useState('')
     const [files, setFiles] = useState([])
-    const [show, setShow] = useState(false);
 
-    const handleClose = (str) => {
-        setShow(false)
-        if (str === 'cancel') {
-            setNote('')
-        } else {
-            setNoteSave(note)
-        }
-    };
-    const handleShow = () => setShow(true);
 
     let FormData = require("form-data");
     const formData = new FormData()
@@ -79,7 +68,6 @@ function BaseFormCreate({ darkMode }) {
         setMaschine('')
         setStatus('')
         setNote('')
-        setNoteSave('')
         setFiles([])
         // console.log({ dateAuto, employeeShortcut, maschine, status, note, files, formData })
 
@@ -150,29 +138,7 @@ function BaseFormCreate({ darkMode }) {
                         <td >
                             <div className='my-2' >
                                 <Form.Label className={`fs-5 fw-bold ps-1 text-${darkMode ? 'white' : ''}`} >Notiz</Form.Label>
-                                <button className='btn_note' onClick={handleShow} >
-                                    <Form.Control className='textarea_disabled' value={noteSave} as="textarea" rows={3} disabled placeholder='Notiz' />
-                                </button>
-
-
-                                <Modal show={show} onHide={handleClose}>
-                                    <Modal.Header closeButton>
-                                        <Modal.Title>Notiz</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                            <Form.Control onChange={handleNote} value={note} as="textarea" rows={3} />
-                                        </Form.Group>
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button variant="secondary" onClick={() => handleClose('cancel')}>
-                                            Abbruch
-                                        </Button>
-                                        <Button variant="primary" onClick={() => handleClose('save')}>
-                                            Speichern
-                                        </Button>
-                                    </Modal.Footer>
-                                </Modal>
+                                <Form.Control onChange={handleNote} value={note} as="textarea" rows={3} />
                             </div>
                         </td>
                     </tr>

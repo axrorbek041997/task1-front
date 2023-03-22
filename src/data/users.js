@@ -1,5 +1,10 @@
 const arr = [
-    { id: 1, status: 'Störung', description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old' },
+    {
+        id: 1,
+        status: 'Störung',
+        img: 'https://static-cse.canva.com/blob/847064/29.jpg',
+        description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old'
+    },
     { id: 2, status: '', description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old' },
     { id: 3, status: '', description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old' },
     { id: 4, status: '', description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old' },
