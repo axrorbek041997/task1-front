@@ -3,6 +3,7 @@ import { Modal, Button, Form, Table, Badge } from 'react-bootstrap';
 import { Fragment } from 'react';
 import moment from 'moment';
 import { timeFormat } from '../../utils/index'
+import { url } from '../../api/index'
 
 import './BaseTable.css'
 
@@ -163,8 +164,8 @@ const BaseTable = ({ data, darkMode }) => {
                                         </td>
                                         <td className='' >
                                             <div className='d-flex justify-content-center align-items-center' >
-                                                {item?.img ? <a href='https://static-cse.canva.com/blob/847064/29.jpg' target="_blank" >
-                                                    <img width={30} height={30} src={item?.img} alt='avatar' />
+                                                {item?.image ? <a href='https://static-cse.canva.com/blob/847064/29.jpg' target="_blank" >
+                                                    <img width={30} height={30} src={url + item?.image} alt='avatar' />
                                                 </a> : '-'}
                                             </div>
                                         </td>

@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const url = 'https://ws.biznestadbir.uz/api/items/'
+export const url = 'https://ws.biznestadbir.uz/'
 
 export const create = async (data) => {
-    return await axios.post(url, data).then(res => {
+    return await axios.post(url + 'api/items/', data).then(res => {
         return res
     })
 }
 
 export const fetchGet = async (page = 1) => {
-    return await axios.get(url + `?page=${page}`)
+    return await axios.get(url + `api/items/?page=${page}`)
 }
