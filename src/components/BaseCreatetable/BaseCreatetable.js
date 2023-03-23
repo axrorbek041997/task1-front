@@ -21,7 +21,8 @@ const BaseFormCreate = ({ darkMode, page, setTableData }) => {
     const [maschine, setMaschine] = useState([])
     const [status, setStatus] = useState('')
     const [note, setNote] = useState('')
-    const [files, setFiles] = useState([])
+    const [files, setFiles] = useState('')
+    const [valueFile, setValueFile] = useState('')
 
 
     const handelEmployee = (e) => {
@@ -31,7 +32,10 @@ const BaseFormCreate = ({ darkMode, page, setTableData }) => {
         setNote(e.target.value)
     }
 
-
+    const handleUpload = (e) => {
+        setFiles(e.target.files[0])
+        setValueFile(e.target.value)
+    }
 
     const handleSubmit = () => {
 
@@ -54,6 +58,7 @@ const BaseFormCreate = ({ darkMode, page, setTableData }) => {
                 setStatus('')
                 setNote('')
                 setFiles('')
+                setValueFile('')
                 fetchGet(page).then((res) => setTableData(res.data.items))
             }
         })
@@ -65,7 +70,8 @@ const BaseFormCreate = ({ darkMode, page, setTableData }) => {
         setMaschine('')
         setStatus('')
         setNote('')
-        setFiles([])
+        setFiles('')
+        setValueFile('')
     }
 
     return (
@@ -140,7 +146,7 @@ const BaseFormCreate = ({ darkMode, page, setTableData }) => {
                         <td>
                             <div className='my-2'>
                                 <Form.Label className={`fs-5 fw-bold ps-1 text-${darkMode ? 'white' : ''}`} >Bild anhängen</Form.Label>
-                                <BaseFileUpload file={(file) => setFiles(file)} />
+                                <BaseFileUpload value={valueFile} file={(e) => handleUpload(e)} />
                             </div>
                         </td>
                     </tr>
