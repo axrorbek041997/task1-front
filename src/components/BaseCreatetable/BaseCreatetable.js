@@ -5,25 +5,23 @@ import Table from 'react-bootstrap/Table';
 import BaseFileUpload from '../BaseFileUpload/BaseFileUpload';
 import BaseMultiSelect from '../BaseMultiSelect/BaseMultiSelect';
 import { machine, statusData } from '../../data/users';
+import { create, fetchGet } from '../../api/index'
+import { timeFormat } from '../../utils/index'
 
 import './BaseCreateTable.css'
 
 
-function BaseFormCreate({ darkMode }) {
+const BaseFormCreate = ({ darkMode, page, setTableData }) => {
 
-    const [currentDate, setCurrentDate] = useState(moment().format('DD.MM.YYYY, HH:mm:ss'))
-    const time = moment().format('HH:mm:ss')
+    const date = moment().format()
+    const currentDate = moment().format('DD.MM.YYYY, HH:mm')
+    const time = moment().format('HH:mm')
 
     const [employeeShortcut, setEmployeeShortcut] = useState('')
     const [maschine, setMaschine] = useState([])
     const [status, setStatus] = useState('')
     const [note, setNote] = useState('')
     const [files, setFiles] = useState([])
-
-
-    let FormData = require("form-data");
-    const formData = new FormData()
-    formData.append('file', files[0])
 
 
     const handelEmployee = (e) => {
@@ -33,26 +31,32 @@ function BaseFormCreate({ darkMode }) {
         setNote(e.target.value)
     }
 
-    const dateOnline = function () {
-        setCurrentDate(moment().format('DD.MM.YYYY, HH:mm:ss'))
-    }
 
-    setInterval(dateOnline, 1000)
-
-    const timeFormat = function () {
-        if (time >= '06:00:00' && time <= '14:30:00') {
-            return 'F1'
-        } else if (time >= '14:30:01' && time <= '22:30:00') {
-            return 'S2'
-        } else {
-            return 'N3'
-        }
-    }
 
     const handleSubmit = () => {
 
-        console.log({ employeeShortcut, maschine, status, note, files, formData })
+        const FormData = require('form-data');
+        const formData = new FormData()
 
+        formData.append('file', files)
+        formData.append('date', date)
+        formData.append('ma', employeeShortcut)
+        formData.append('note', note)
+        formData.append('status', status.id)
+        maschine.map(item => {
+            formData.append('machine', item.name)
+        })
+
+        create(formData).then(res => {
+            if (res.status === 201) {
+                setEmployeeShortcut('')
+                setMaschine('')
+                setStatus('')
+                setNote('')
+                setFiles('')
+                fetchGet(page).then((res) => setTableData(res.data.items))
+            }
+        })
     }
 
 
@@ -77,7 +81,7 @@ function BaseFormCreate({ darkMode }) {
                             <Form.Control
                                 size='lg'
                                 className='my-2 '
-                                value={currentDate + `     Schicht // ${timeFormat()}`}
+                                value={currentDate + `     Schicht // ${timeFormat(time)}`}
                                 type="text"
                                 placeholder="Automatically date"
                                 disabled
@@ -136,7 +140,7 @@ function BaseFormCreate({ darkMode }) {
                         <td>
                             <div className='my-2'>
                                 <Form.Label className={`fs-5 fw-bold ps-1 text-${darkMode ? 'white' : ''}`} >Bild anhängen</Form.Label>
-                                <BaseFileUpload value={files[0]} file={(file) => setFiles(file)} />
+                                <BaseFileUpload file={(file) => setFiles(file)} />
                             </div>
                         </td>
                     </tr>

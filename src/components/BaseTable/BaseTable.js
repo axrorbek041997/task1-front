@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Modal, Button, Form, Table } from 'react-bootstrap';
+import { Modal, Button, Form, Table, Badge } from 'react-bootstrap';
 import { Fragment } from 'react';
+import moment from 'moment';
+import { timeFormat } from '../../utils/index'
 
 import './BaseTable.css'
 
@@ -17,9 +19,9 @@ const BaseTable = ({ data, darkMode }) => {
     const [noteCommentSave, setNoteCommentSave] = useState('')
 
     const statusColor = (status) => {
-        if (status === 'Info') {
+        if (status === 'info') {
             return ''
-        } else if (status === 'Anweisung') {
+        } else if (status === 'anweisung') {
             return 'warning'
         } else {
             return 'danger'
@@ -46,6 +48,22 @@ const BaseTable = ({ data, darkMode }) => {
     };
 
     const handleShow = () => setShow(true);
+
+    const dateDay = (date) => {
+        if (moment(date).format('dddd') === 'Monday') return 'Mo'
+        if (moment(date).format('dddd') === 'Tuesday') return 'Di'
+        if (moment(date).format('dddd') === 'Wednesday') return 'Mi'
+        if (moment(date).format('dddd') === 'Thursday') return 'Do'
+        if (moment(date).format('dddd') === 'Friday') return 'Fr'
+        if (moment(date).format('dddd') === 'Saturday') return 'Sa'
+        if (moment(date).format('dddd') === 'Sunday') return 'So'
+    }
+    const onDate = (date) => {
+        return moment(date).format('DD.MM.YYYY')
+    }
+    const onHour = (date) => {
+        return moment(date).format('HH:mm')
+    }
 
     return (
         <>
@@ -123,13 +141,19 @@ const BaseTable = ({ data, darkMode }) => {
                             return item !== undefined ? (
                                 <Fragment key={item?.id + i}>
                                     <tr className={i % 2 === 0 ? 'bg_table_body' : ''} >
-                                        <td>{item?.id}</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td className={`bg-${statusColor(item?.status)}`} >@mdo</td>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td className='width-not' >{item?.description + noteCommentSave}</td>
+                                        <td>{dateDay(item.date)},<br />{onDate(item.date)}</td>
+                                        <td>{onHour(item.date)}</td>
+                                        <td>{timeFormat(onHour(item.date))}</td>
+                                        <td className={`bg-${statusColor(item?.status)}`} >{item.status}</td>
+                                        <td>{item.ma}</td>
+                                        <td>{item.machine.map((mach, i) => {
+                                            return (
+                                                <span className='mx-1 fs-5' key={mach + i} >
+                                                    <Badge bg="secondary">{mach}</Badge>
+                                                </span>
+                                            )
+                                        })}</td>
+                                        <td className='width-not' >{item?.note + noteCommentSave}</td>
                                         <td>
                                             <span onClick={handleShow} className={`cursor_pointer text-${i % 2 === 0 ? 'white' : darkMode ? 'white' : 'dark'}`} >
                                                 <svg width="30" height="30" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
